@@ -1,0 +1,8 @@
+#MacOS system files
+**/.DS_Store
+
+#Gets rid of packages, prefers install via package-lock.json
+**/node_modules/
+**/dist/
+**/coverage/
+**/Plans/
