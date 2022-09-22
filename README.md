@@ -86,4 +86,4 @@ There are some features I've worked toward visible in the source code, but are n
 
 ## 5. Feature Demonstration Video
 
-See a demonstration of all the features this app has to offer <a href="#">Video Coming Soon</a>.
+See a demonstration of all the features this app has to offer <a href="https://www.youtube.com/watch?v=etTEzO52VCk">Video Coming Soon</a>.
