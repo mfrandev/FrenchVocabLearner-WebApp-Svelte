@@ -306,7 +306,7 @@ export async function getWordsByRegex(regex: string) : Promise<WordModel[]> {
     regex = '^(' + regex + ')';
 
     //Query the DB with a custom query
-    console.log('searching by: ' + regex);
+    // console.log('searching by: ' + regex);
     await dbConnection.query(`SELECT * FROM Word WHERE WordName REGEXP ? ORDER BY WordName LIMIT 8`,
     {
         replacements: [regex]
@@ -337,13 +337,13 @@ export async function getWordsByRegex(regex: string) : Promise<WordModel[]> {
 
         //If the query was successful...
         if(success) {
-            console.log('Word.ts success getWordsByRegex');
+            // console.log('Word.ts success getWordsByRegex');
             resolve(result);
         } 
 
         //If the query failed...
         else {
-            console.log('Word.ts reject getWordsByRegex');
+            // console.log('Word.ts reject getWordsByRegex');
             reject({
                 code: 500,
                 error: errorMsg

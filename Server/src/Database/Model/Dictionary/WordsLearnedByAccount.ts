@@ -518,7 +518,7 @@ export const getAllWordIDsLearnedByAccount = async (email: string) => {
         //Save the IDs and Knowledge Levels of all words learned by a given account
         words = answer;
         // console.log(words);
-        console.log("There are " + words.length + " words learned");
+        // console.log("There are " + words.length + " words learned");
         success = true;
     })
 

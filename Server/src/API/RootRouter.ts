@@ -127,7 +127,9 @@ app.listen(process.env.PORT, () => {
     //     dbEntry.map[i] = false;
     //   }
     // }
+
+    console.log(process.env.NODE_ENV);
   
     //Display that the server is ready for requests, i.e., environment is prepared for adding data to the DB
-    console.log(`Express is  listening at http://localhost:${process.env.PORT}`);
+    console.log(`Express is listening at http://localhost:${process.env.PORT}`);
   });

@@ -9,9 +9,9 @@ dotenv.config();
  * Changing these fields here changes them for the rest of the system.
  */
 export const DBConnectionDetails = {
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    username: process.env.NODE_ENV === 'test' ? process.env.TEST_DB_USERNAME : process.env.DB_USERNAME,
+    password: process.env.NODE_ENV === 'test' ? process.env.TEST_DB_PASSWORD : process.env.DB_PASSWORD,
+    database: process.env.NODE_ENV === 'test' ? process.env.TEST_DB_NAME : process.env.DB_NAME
 }
 
 /**
@@ -35,7 +35,8 @@ export const dbConnection = new Sequelize(DBConnectionDetails.database, DBConnec
         min: 0,
         acquire: 12000000,
         idle: 10000000,
-    }
+    },
+    logging: false
 });
 
 
