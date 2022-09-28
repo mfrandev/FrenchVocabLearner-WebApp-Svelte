@@ -73,6 +73,8 @@ Go to <em>/frontend</em> and enter <b>npm run dev</b> after installing dependenc
 
 ### 6. Test Suite
 
+Go to <em>/Server</em> and type in <b>npm run test</b> to execute the backend testing suite. Currently, all backend functionality is tested except the HTTP endpoints and adjacent content, like some middleware.
+
 <br>
 
 ## 4. Coming Soon
