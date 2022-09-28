@@ -2,7 +2,7 @@ import { createAccount, AccountModel } from "../../Model/Users/Account";
 import { validate } from 'email-validator';
 import { Status } from "../../../Config/DBConfig";
 import { addAccountRole } from "../../Model/Users/AccountRole";
-import { validateUsername, validatePassword } from "../../../Features/RegisterUsers/ValidateLoginDetails";
+import { validateUsername } from "../../../Features/RegisterUsers/ValidateLoginDetails";
 
 /**
  * Takes all the fields necessary in the account table and tries to add them
@@ -17,7 +17,7 @@ export const addAccountToDatabase = async (accountObj: AccountModel) : Promise<S
     //Save the status of adding the user to the database
     let status: Status;
 
-    //If the email entered is valid, if the username is 3 or more characters, and the password is 8 or more characters
+    //If the email entered is valid and the username is 5 or more characters
     if(validate(accountObj.Email) && validateUsername(accountObj.Username)) {
 
         //Try adding the account to the database and save the status
@@ -49,12 +49,22 @@ export const addAccountToDatabase = async (accountObj: AccountModel) : Promise<S
             //Wait for all async operations to resolve
             await Promise.all(promises);
         })
-        .catch(err => {status = err; success = false;});
+        .catch(err => {
+            status = {
+                        code: 500, 
+                        message: 'Please try registering again with the correct username and email formatting'
+                    }; 
+            success = false;
+        });
 
     } 
     
     //If failed, note that the addition did not succeed
     else {
+        status = {
+            code: 500, 
+            message: 'Please try registering again with the correct username and email formatting'
+        }; 
         success = false;
     }
 

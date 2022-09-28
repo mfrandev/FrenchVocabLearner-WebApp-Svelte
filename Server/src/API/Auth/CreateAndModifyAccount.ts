@@ -6,6 +6,7 @@ import { hash } from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthenticatedUserData } from '../../State/AuthenticatedUserState';
 import { getAllRolesOfAccount } from '../../Database/Model/Users/AccountRole';
+import { validatePassword } from '../../Features/RegisterUsers/ValidateLoginDetails';
 
 export const routerCreateAndModifyAccount = express.Router();
 
@@ -20,6 +21,10 @@ routerCreateAndModifyAccount.post('/register', csrfProtection, async (req: any, 
 
     //Randomly create the salt value for each registration
     const saltRounds = Math.abs(Math.random());
+
+    if(!validatePassword(req.body.password)) {
+        res.status(500).send({code: 500, message: 'Invalid password, please try again.'});
+    }
 
     //Save the encrypted password hash here
     let password : string;

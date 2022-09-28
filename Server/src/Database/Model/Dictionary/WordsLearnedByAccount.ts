@@ -320,6 +320,9 @@ export const getRandomWordIDLearnedByAccount = async (knowledgeLevel: string | n
             //Format the result
             const [answer] = results;
 
+            // console.log('============================ answer ============================');
+            // console.log(answer);
+
             //Save the wordID
             wordID = answer[1];
 
@@ -357,6 +360,10 @@ export const getRandomWordIDLearnedByAccount = async (knowledgeLevel: string | n
         })
         .then(([results, metadata]) => {
             const [answer] = results;
+
+            // console.log('============================ answer ============================');
+            // console.log(answer);
+
             wordID = answer[1];
             let knowledgeLevelAsString = answer[2];
             wordData = {

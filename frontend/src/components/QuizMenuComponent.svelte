@@ -11,7 +11,9 @@
     let select = 'any';
 
     const onClick = () => {
-        goto(selectMenu && enabled ? `/${path}?level=${select}` : `/${path}`, {replaceState: false});
+        if(enabled) {
+            goto(selectMenu && enabled ? `/${path}?level=${select}` : `/${path}`, {replaceState: false});
+        }
     }
 
 </script>

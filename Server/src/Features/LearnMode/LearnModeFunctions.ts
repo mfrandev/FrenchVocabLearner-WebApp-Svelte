@@ -149,6 +149,7 @@ export const getWordIDsForQuiz = async (knowledgeLevel: string | number, email: 
 
         //On success...
         .then(wordIDAndKnowledgeLevel => {
+
             //Go through the saved wordIDs and make sure the current one has not already been saved
             if(wordIDs.filter(chosenIDAndKnowledgeLevel => wordIDAndKnowledgeLevel.wordID === chosenIDAndKnowledgeLevel.wordID).length === 0) {
 

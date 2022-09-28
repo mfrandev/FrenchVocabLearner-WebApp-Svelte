@@ -50,7 +50,7 @@ export interface AccountModel {
     Email: string,
     Username: string,
     Password: string,
-    UserID: string
+    UserID?: string
 }
 
 /**
@@ -85,11 +85,14 @@ export const createAccount = async (accountObj: AccountModel) : Promise<Status> 
     //If unsuccessful, account for the error
     .catch(error => {
 
+        // console.log(JSON.stringify(error));
+
         let problemField = error.fields;
 
+        // console.log(problemField);
+
         if('PRIMARY' in problemField) {
-            errorMsg = 'There is already an account registered with this email. \
-            If you forgot your password, you can recover it here.';
+            errorMsg = 'There is already an account registered with this email. If you forgot your password, you can recover it here.';
         } else if('Username' in problemField) {
             errorMsg = 'There is already an account with this username. Try another one!';
         } else {

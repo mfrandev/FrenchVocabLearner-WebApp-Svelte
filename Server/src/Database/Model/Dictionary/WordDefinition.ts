@@ -129,12 +129,14 @@ export async function getDefinitionsFromWordID(wordID: number) : Promise<string[
     })
     .then(([results, metadata]) => {
 
-        //Place each definition in the result array for easy use
-        for(let i = 0; i < results.length; i++) {
-            result.push(results[i][1]);
+        if(results.length > 0) {
+            //Place each definition in the result array for easy use
+            for(let i = 0; i < results.length; i++) {
+                result.push(results[i][1]);
+            }
+            //console.log(result);
+            success = true;
         }
-        //console.log(result);
-        success = true;
     })
     .catch(err => {
         errorMsg = err.toString();

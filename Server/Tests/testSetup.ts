@@ -1,7 +1,9 @@
 import { DBConnectionDetails, dbConnection } from './../src/Config/DBConfig'; 
 import { registerUser } from '../src/Features/RegisterUsers/RegisterFunctions';
+import { learnWord } from '../src/Database/Model/Dictionary/WordsLearnedByAccount';
 import { v4 as uuidv4 } from 'uuid';
 import { hash } from 'bcryptjs';
+import { addAccountRole } from '../src/Database/Model/Users/AccountRole';
 
 // Clean the data before or after testing, depending on parameter provided
 export const scrubDatabase = async (context?: string): Promise<String> => {
@@ -70,6 +72,30 @@ export const scrubDatabase = async (context?: string): Promise<String> => {
                 UserID: uuidv4()
             }).then(() => console.log('Successfully registered temp user')));
         }));
+
+        // Account for testing getAllWordsLearnedByAccout in GetWordFlashards.test.ts
+        promise.push(hash('temporaryPassword', 10)
+        .then(async password => {
+            promise.push(registerUser({
+                Email: 'number@learned.com',
+                Username: 'numLearned',
+                Password: password,
+                UserID: uuidv4()
+            }).then(() => console.log('Successfully registered number learned user')));
+        }));
+
+        await Promise.all(promise);
+
+        promise.push(addAccountRole({AccountEmail: 'number@learned.com', RoleID: 0}));
+
+        await Promise.all(promise);
+        
+        const wordIDs = [228, 1630, 3198, 5374, 9046, 12548, 17395, 20877, 24205, 25519];
+
+        wordIDs.forEach(id => {
+            promise.push(learnWord({WordLearnedID: id, KnowledgeLevel: '3'}, 'number@learned.com'));
+        });
+
     }
 
     if(promise.length > 0) await Promise.all(promise);

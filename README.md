@@ -22,7 +22,7 @@ This web app currently includes the following features to help you learn French 
     <p>I chose to use Typescript for this project since I've not used it before and wanted to see why it is so highly rated. From this point, Node.js and express seemed like a logical choice for the backend server.</p>
     <br>
     <li><b>Database: MySQL (MariaDB) + Sequelize Client</b></li>
-    <p>I considered using MongoDB for this project, but ultimately chose MariaDB due to my familiarity with table based schemas. Sequelize provided a great way to connect to my database and perform queries using Typescript, so it made sense to use as well. A copy of my database can be found at the root level of this repository in <em>VocabLearnerFR.mysql</em></p>
+    <p>I considered using MongoDB for this project, but ultimately chose MariaDB due to my familiarity with table based schemas. Sequelize provided a great way to connect to my database and perform queries using Typescript, so it made sense to use as well. A copy of my database can be found at the root level of this repository in <em>VocabLearnerFR.mysql</em>, and the testing database is in <em>Test_VocabLearnerFR.mysql</em> at the same level.</p>
     <br>
     <li><b>Frontend: Svelte + Typescript</b></li>
     <p>Svelte is a lightweight frontend framework that was brought to my attention at the start of July 2022, so I decided to try it out. I likely didn't use SvelteKit (the more "frameworky" set of tools offered) to the fullest extent, but Svelte was a pleasure to use and would strongly consider using it for future projects.</p>
@@ -31,7 +31,7 @@ This web app currently includes the following features to help you learn French 
     <p>There are many ways to implement sessions, and I ultimately chose to use cookies since this project was initially intended to be hosted. I needed some way to save session data, and chose to use Redis since it was the most downloaded store option available and was highly rated.</p>
     <br>
     <li><b>Testing: Jest</b></li>
-    <p>I thought testing would be relatively straightforward for this application, but I've never had to test a live DB with dependency injection before, so although writing this program without a test suite is bad practice, I will be adding a suite of tests over time to learn how these things work.</p>
+    <p>To test the API, I use a test database and covered each function across the set of test suites provided. The alternative option would have been to mock the database and test it using these mock functions, but this process seems pointless to me and actually verifying the data is registered seemed like a better option.</p>
     <br>
 </ol>
 
@@ -56,6 +56,7 @@ Go to both <em>/Server</em> and <em>/frontend</em> and enter <b>npm install</b> 
 <ol>
     <li>Create a MariaDB database using the mysqldump file <em>/VocabLearnerFR.mysql</em> on your MariaDB server</li>
     <li>To connect a MariaDB database to the application, simply fill in the details in <em>/server/.env</em> for DB_USERNAME, DB_PASSWORD, and DB_NAME.</li>
+    <li>Do the same as step 1 with <em>Test_VocabLearnerFR.mysql</em> and step 2 with each of the TEST_DB fields in <em>/server/.env</em> using the details for the test database. Make sure this is separate from your usage database or the app will not work.</li>
 </ol>
 
 ### 3. Redis
@@ -69,6 +70,8 @@ Go to <em>/Server</em> and enter <b>npm run start</b> after installing dependenc
 ### 5. Svelte Vite Server
 
 Go to <em>/frontend</em> and enter <b>npm run dev</b> after installing dependencies. Follow the instructions prompted by the terminal to access the web interface.
+
+### 6. Test Suite
 
 <br>
 

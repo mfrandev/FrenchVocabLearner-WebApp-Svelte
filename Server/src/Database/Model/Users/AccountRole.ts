@@ -108,8 +108,9 @@ export const getAllRolesOfAccount = async (email: string) : Promise<RoleModel[]>
 
     //State mangement variables
     const roles: RoleModel[] = [];
-    let status : Status | boolean = false;
+    let status : Status;
     const promises = [];
+    let success = true;
 
     //Query for the roles given the email...
     await dbConnection.query('SELECT * FROM AccountRole WHERE AccountEmail = ?', {
@@ -129,7 +130,8 @@ export const getAllRolesOfAccount = async (email: string) : Promise<RoleModel[]>
                 status = {
                     code: 500,
                     message: 'Error retrieving roles from the database. Please try again'
-                }
+                };
+                success = false;
             }));
         })
     });
@@ -137,11 +139,12 @@ export const getAllRolesOfAccount = async (email: string) : Promise<RoleModel[]>
     //Wait for all promises to resolve (i.e., get all roles)
     await Promise.all(promises);
 
+    // console.log(success);
     //Return the new promise
     return new Promise<RoleModel[]>((resolve, reject) => {
 
         //If there were no errors...
-        if(!status) {
+        if(success) {
 
             //Return the list of roles for the given user
             resolve(roles);

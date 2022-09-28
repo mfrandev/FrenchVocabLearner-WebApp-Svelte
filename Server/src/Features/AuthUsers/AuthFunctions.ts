@@ -51,7 +51,7 @@ export const validateLoginDetails = async (body: any, accountDetails: AccountWit
                     .catch(() => {
                         status = {
                             code: 500,
-                            message: 'Could not retrieve UserID to create session'
+                            message: 'Could not retrieve account with this email'
                         };
                     })
                 } else {
@@ -114,7 +114,7 @@ export const validateLoginDetails = async (body: any, accountDetails: AccountWit
                     .catch(() => {
                         status = {
                             code: 500,
-                            message: 'Could not retrieve UserID to create session'
+                            message: 'Could not retrieve account with this username'
                         };
                     })
                 } else {

@@ -86,7 +86,7 @@ export const generateFlashcardFromWordModel = async (wordData: WordModel) : Prom
         //Save the category
         .then(async resultGetCategory => {
             data.category = resultGetCategory;
-            console.log(`Category for ${wordData.WordName}: ${resultGetCategory}`);
+            // console.log(`Category for ${wordData.WordName}: ${resultGetCategory}`);
 
             //Use the WordID to get the related words
             await getRelationsFromWordID(data.word.WordID)
@@ -96,7 +96,7 @@ export const generateFlashcardFromWordModel = async (wordData: WordModel) : Prom
 
             //Could not get the related words and save the error
             .catch(err => {
-                console.log(`rejecting ${wordData.WordName} 1`);
+                // console.log(`rejecting ${wordData.WordName} 1`);
                 errorVal = err;
                 failure = true;
             });
@@ -104,7 +104,7 @@ export const generateFlashcardFromWordModel = async (wordData: WordModel) : Prom
 
         //Could not get the word category
         .catch(err => {
-                console.log(`rejecting ${wordData.WordName} 2`);
+                // console.log(`rejecting ${wordData.WordName} 2`);
                 errorVal = err;
                 failure = true;
             });
@@ -112,7 +112,7 @@ export const generateFlashcardFromWordModel = async (wordData: WordModel) : Prom
 
     //Could not get the definitions
     .catch(err => {
-        console.log(`rejecting ${wordData.WordName} 3`);
+        // console.log(`rejecting ${wordData.WordName} 3`);
         errorVal = err;
         failure = true;
     });
@@ -122,13 +122,13 @@ export const generateFlashcardFromWordModel = async (wordData: WordModel) : Prom
 
         //If the query was successful...
         if(!failure) {
-            console.log(`Resolving ${wordData.WordName} in generateFlashcardFromWordModel`);
+            // console.log(`Resolving ${wordData.WordName} in generateFlashcardFromWordModel`);
             resolve(data);
         } 
 
         //If the query failed...
         else {
-            console.log(`Rejecting ${wordData.WordName} in generateFlashcardFromWordModel`);
+            // console.log(`Rejecting ${wordData.WordName} in generateFlashcardFromWordModel`);
             reject({
                 code: 500,
                 error: errorVal
@@ -361,7 +361,7 @@ export const generateFlashcardsFromRegex = async (regex: string) : Promise<WordF
 
                 //Error retrieving the related words
                 .catch(err => {
-                    console.log(`rejecting ${word} 1`);
+                    // console.log(`rejecting ${word} 1`);
                     errorVal = err;
                     failure = true;
                 });
@@ -369,7 +369,7 @@ export const generateFlashcardsFromRegex = async (regex: string) : Promise<WordF
 
             //Error retrieving the word category
             .catch(err => {
-                    console.log(`rejecting ${word} 2`);
+                    // console.log(`rejecting ${word} 2`);
                     errorVal = err;
                     failure = true;
                 });
@@ -377,7 +377,7 @@ export const generateFlashcardsFromRegex = async (regex: string) : Promise<WordF
 
         //Error retrieving the word definitions
         .catch(err => {
-            console.log(`rejecting ${word} 3`);
+            // console.log(`rejecting ${word} 3`);
             errorVal = err
             failure = true;
         })
@@ -385,7 +385,7 @@ export const generateFlashcardsFromRegex = async (regex: string) : Promise<WordF
 
     //Error retrieving the word model from the word ID
     .catch(err => {
-        console.log(`rejecting ${word} 4`);
+        // console.log(`rejecting ${word} 4`);
         errorVal = err;
         failure = true;
     });
@@ -396,13 +396,13 @@ export const generateFlashcardsFromRegex = async (regex: string) : Promise<WordF
 
         //If the query was successful...
         if(!failure) {
-            console.log(`Resolving ${word} in generateFlashcardFromWord`);
+            // console.log(`Resolving ${word} in generateFlashcardFromWord`);
             resolve(data);
         } 
 
         //If the query failed...
         else {
-            console.log(`Rejecting ${word} in generateFlashcardFromWord`);
+            // console.log(`Rejecting ${word} in generateFlashcardFromWord`);
             reject({
                 code: 500,
                 error: errorVal
