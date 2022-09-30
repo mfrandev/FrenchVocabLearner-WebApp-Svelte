@@ -1,6 +1,6 @@
 # FrenchVocabLearner-WebApp-Svelte: 
 
-Learn French vocabulary with this application!
+Learn French vocabulary with this application! (NOTE: I have nowhere to securely deploy this app to, so the development build must be used at this time.)
 
 ## 1. App Features
 This web app currently includes the following features to help you learn French vocabulary:
